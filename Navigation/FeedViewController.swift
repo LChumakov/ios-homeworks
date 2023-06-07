@@ -7,10 +7,10 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+final class FeedViewController: UIViewController {
     
-    private var actionButton: UIButton = {
-        let button = UIButton()
+    private lazy var actionButton: UIButton = {
+        var button = UIButton()
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.borderColor = UIColor.red.cgColor
@@ -18,15 +18,20 @@ class FeedViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupConstraints()
+        setupView()
+  
+    }
+    
+    func setupConstraints() {
         view.addSubview(actionButton)
-        self.title = "Profile"
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -35,11 +40,13 @@ class FeedViewController: UIViewController {
             actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        actionButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
     
-        @objc func buttonPressed (_ sender: UIButton) {
+    func setupView() {
+        self.title = "Profile"
+    }
+    
+    @objc private func buttonPressed () {
         let postViewController = PostViewController()
         postViewController.post = Post(title: "Change title")
         
@@ -48,8 +55,8 @@ class FeedViewController: UIViewController {
        
         navigationController?.pushViewController(postViewController, animated: true)
     }
-
 }
+
     struct Post {
         var title: String
 }
