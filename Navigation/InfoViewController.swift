@@ -12,21 +12,23 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
-        title = "New view"
-        
-       let infoButton: UIButton = {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.layer.borderColor = UIColor.red.cgColor
-            button.layer.borderWidth = 1
-            button.layer.cornerRadius = 10
-            button.setTitle("Touch me", for: .normal)
-            button.setTitleColor(.systemBlue, for: .normal)
-           
-            return button
-        }()
-        
+        setupView()
+        setupConstraints()
+    }
+    
+   private lazy var infoButton: UIButton = {
+         let button = UIButton()
+         button.translatesAutoresizingMaskIntoConstraints = false
+         button.layer.borderColor = UIColor.red.cgColor
+         button.layer.borderWidth = 1
+         button.layer.cornerRadius = 10
+         button.setTitle("Touch me", for: .normal)
+         button.setTitleColor(.systemBlue, for: .normal)
+         button.addTarget(self, action: #selector(showUIAlertController), for: .touchUpInside)
+         return button
+     }()
+     
+    private func setupConstraints() {
         view.addSubview(infoButton)
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
@@ -36,32 +38,26 @@ class InfoViewController: UIViewController {
             infoButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             infoButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        infoButton.addTarget(self, action: #selector(showUIAlertController(_:)), for: .touchUpInside)
-        
     }
     
-    @objc func showUIAlertController (_ sender: UIButton) {
+    private func setupView() {
+        view.backgroundColor = .white
+        title = "New view"
+    }
+    
+    @objc private func showUIAlertController () {
         let alertView = UIAlertController(
             title: "ALERT",
             message: "Are you okay?",
             preferredStyle: .alert)
         
-        alertView.addAction(UIAlertAction(title: "Yes", style: .default))
-        alertView.addAction(UIAlertAction(title: "No", style: .cancel))
-        
-        self.present(alertView, animated: true)
+        let printYes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            print("Yesssssss")
+        }
+        let printNo = UIAlertAction(title: "No", style: .cancel)
+        alertView.addAction(printYes)
+        alertView.addAction(printNo)
+        present(alertView, animated: true)
     }
 }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 
