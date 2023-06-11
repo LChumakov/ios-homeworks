@@ -43,7 +43,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         self.window = window
-
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -63,7 +62,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
        
     }
-  
-    }
+  }
 
 
