@@ -11,7 +11,8 @@ class ProfileHeaderView: UIView {
     
     private var imageProfile: UIImageView {
         let image = UIImage(named: "profile")
-        let imageView = UIImageView(image: image!)
+        let imageView = UIImageView()
+        imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 50
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -64,29 +65,29 @@ class ProfileHeaderView: UIView {
         addSubview(labelName)
         addSubview(showStatusButton)
         addSubview(labelStatus)
+    
+        NSLayoutConstraint.activate([
+            imageProfile.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            imageProfile.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            imageProfile.widthAnchor.constraint(equalToConstant: 100),
+            imageProfile.heightAnchor.constraint(equalToConstant: 100),
+
+            labelName.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            labelName.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 16),
+            labelName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
+
+            labelStatus.topAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: 34),
+            labelStatus.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            labelStatus.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+
+            showStatusButton.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 16),
+            showStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            showStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
+
+
+        ])
     }
-//        NSLayoutConstraint.activate([
-//            imageProfile.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-//            imageProfile.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//            imageProfile.widthAnchor.constraint(equalToConstant: 100),
-//            imageProfile.heightAnchor.constraint(equalToConstant: 100),
-//
-//            labelName.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-//            labelName.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 16),
-//            labelName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16 ),
-//
-////            labelStatus.topAnchor.constraint(equalTo: showStatusButton.topAnchor, constant: 34),
-//            labelStatus.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//            labelStatus.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-//
-//            showStatusButton.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 16),
-//            showStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//            showStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-//            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
-//
-//
-//        ])
-//    }
     
     override init(frame: CGRect) {
         super .init(frame: frame)

@@ -43,10 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         self.window = window
-<<<<<<< HEAD
 
-=======
->>>>>>> main
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
