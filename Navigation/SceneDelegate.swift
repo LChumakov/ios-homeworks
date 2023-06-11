@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let profileViewController = ProfileViewController()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileViewController.view.backgroundColor = .yellow
+//        profileViewController.view.backgroundColor = .yellow
         profileViewController.title = "Profile"
     
         let tabBarController = UITabBarController()
@@ -37,6 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
         
         tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
+        
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
@@ -61,7 +62,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
        
     }
-  
-    }
+  }
 
 
