@@ -11,7 +11,8 @@ class ProfileHeaderView: UIView {
     
     private var imageProfile: UIImageView = {
         let image = UIImage(named: "profile")
-        let imageView = UIImageView(image: image!)
+        let imageView = UIImageView()
+        imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 50
         imageView.layer.borderColor = UIColor.white.cgColor
