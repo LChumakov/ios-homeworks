@@ -73,13 +73,12 @@ class ProfileHeaderView: UIView {
         return text
     }()
     
+    private var statusText: String = ""
     
     @objc private func printStatus () {
         labelStatus.text = statusText
         print ("Статус: \(labelStatus.text ?? "")")
     }
-    
-    private var statusText: String = ""
     
     @objc private func statusTextChange(_ textField: UITextField) {
         statusText = textField.text ?? ""

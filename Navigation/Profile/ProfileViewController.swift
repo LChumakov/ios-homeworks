@@ -11,34 +11,53 @@ class ProfileViewController: UIViewController {
 
     var profileHeaderView = ProfileHeaderView()
     
-    override func viewWillLayoutSubviews() {
-        showHearedView()
-    }
+    private lazy var changeTitle: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Change title", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowOpacity = 0.7
+        button.layer.shadowRadius = 4
+        button.backgroundColor = .blue
+        
+        return button
+        
+    }()
     
     private func showHearedView() {
         
         view.addSubview(profileHeaderView)
+        view.addSubview(changeTitle)
+        
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
-            profileHeaderView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 0),
-            profileHeaderView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 250)
-        ])
+            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            
+            changeTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            changeTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            changeTitle.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            ])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        showHearedView()
     }
     
     private func setupView() {
         view.backgroundColor = .lightGray
     }
 
-    
+    override func viewWillLayoutSubviews() {
+    }
     
 
     
