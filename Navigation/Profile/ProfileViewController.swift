@@ -26,6 +26,12 @@ class ProfileViewController: UIViewController {
         
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        showHearedView()
+    }
+    
     private func showHearedView() {
         
         view.addSubview(profileHeaderView)
@@ -33,7 +39,6 @@ class ProfileViewController: UIViewController {
         
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
-        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -46,19 +51,7 @@ class ProfileViewController: UIViewController {
             ])
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-        showHearedView()
-    }
-    
     private func setupView() {
         view.backgroundColor = .lightGray
     }
-
-    override func viewWillLayoutSubviews() {
-    }
-    
-
-    
 }

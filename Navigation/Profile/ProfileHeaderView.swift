@@ -10,9 +10,9 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     private var imageProfile: UIImageView = {
+        var imageView = UIImageView()
         let image = UIImage(named: "profile")
-        let imageView = UIImageView()
-        imageView.image = image
+        imageView = UIImageView(image: image)
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 50
