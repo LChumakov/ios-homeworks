@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     
     private var imageProfile: UIImageView = {
         var imageView = UIImageView()
-        let image = UIImage(named: "profile")
+        let image = UIImage(named: "Profile")
         imageView = UIImageView(image: image)
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
