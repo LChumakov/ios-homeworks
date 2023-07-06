@@ -27,17 +27,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        let profileViewController = ProfileViewController()
 //        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-//        profileViewController.view.backgroundColor = .yellow
     
-        let loginViewController = loginViewController()
-        let loginVNavigationController = UINavigationController(rootViewController: loginViewController)
+        let loginViewController = LoginViewController()
+        let loginNavigatinController = UINavigationController(rootViewController: loginViewController)
         
         let tabBarController = UITabBarController()
         
-        feedViewController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: ""), tag: 0)
-        loginViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: ""), tag: 1)
+        feedViewController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
+        loginViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         
-        tabBarController.viewControllers = [feedNavigationController, loginViewController]
+        tabBarController.viewControllers = [feedNavigationController, loginNavigatinController]
         
         
         window.rootViewController = tabBarController
