@@ -5,40 +5,29 @@ class LoginViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
         return contentView
-        
     }()
     
     private var imageViewProfile: UIImageView = {
-        
         var imageView = UIImageView()
         let image = UIImage(named: "Logo")
         imageView = UIImageView(image: image)
-        
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
     private lazy var emailTextView: UITextField = {
         var text = UITextField()
-        
         text.translatesAutoresizingMaskIntoConstraints = false
-        
         text.placeholder = "Email of phone"
         text.font = UIFont.systemFont(ofSize: 16)
         text.layer.backgroundColor = UIColor.systemGray6.cgColor
@@ -50,15 +39,12 @@ class LoginViewController: UIViewController {
         text.clearButtonMode = UITextField.ViewMode.whileEditing
         text.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         text.autocapitalizationType = .none
-        
         return text
     }()
     
     private lazy var passwordTextView: UITextField = {
         var text = UITextField()
-        
         text.translatesAutoresizingMaskIntoConstraints = false
-        
         text.placeholder = "Password"
         text.font = UIFont.systemFont(ofSize: 16)
         text.layer.backgroundColor = UIColor.systemGray6.cgColor
@@ -71,41 +57,32 @@ class LoginViewController: UIViewController {
         text.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         text.autocapitalizationType = .none
         text.isSecureTextEntry = true
-        
         return text
     }()
     
     private lazy var textStackView: UIStackView = {
         let stackView = UIStackView()
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
-        
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.clipsToBounds = true
-        
         stackView.addArrangedSubview(emailTextView)
         stackView.addArrangedSubview(passwordTextView)
-        
         return stackView
     }()
     
     private lazy var loginButton: UIButton = {
         let button = UIButton()
-        
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.layer.cornerRadius = 10
         button.setTitle("Log in", for: .normal)
         button.setBackgroundImage(UIImage(named: "BluePixel"), for: .normal)
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(touchLoginButton), for: .touchUpInside)
-        
         return button
     }()
     
@@ -132,7 +109,7 @@ class LoginViewController: UIViewController {
             
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayout.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayout.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: safeAreaLayout.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayout.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaLayout.bottomAnchor),
             
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -140,6 +117,7 @@ class LoginViewController: UIViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+//            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
             imageViewProfile.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             imageViewProfile.heightAnchor.constraint(equalToConstant: 100),

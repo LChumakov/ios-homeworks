@@ -14,16 +14,14 @@ class ProfileViewController: UIViewController {
     private lazy var changeTitle: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Change title", for: .normal)
+        button.setTitle("Изменить заголовок", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowOpacity = 0.7
         button.layer.shadowRadius = 4
         button.backgroundColor = .blue
-        
         return button
-        
     }()
     
     override func viewDidLoad() {

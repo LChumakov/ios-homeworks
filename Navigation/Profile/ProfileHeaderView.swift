@@ -18,7 +18,6 @@ class ProfileHeaderView: UIView {
         imageView.layer.cornerRadius = 50
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        
         return imageView
     }()
     
@@ -28,24 +27,22 @@ class ProfileHeaderView: UIView {
         label.text = "Фрилансер"
         label.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
         label.textColor = .black
-        
         return label
     }()
     
     private var labelStatus: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Waiting ..."
+        label.text = "..."
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        
         return label
     }()
     
     private lazy var showStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status...", for: .normal)
+        button.setTitle("Показать статус...", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -53,7 +50,6 @@ class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.addTarget(self, action: #selector(printStatus), for: .touchUpInside)
         button.backgroundColor = .blue
-        
         return button
     }()
     
@@ -66,10 +62,9 @@ class ProfileHeaderView: UIView {
         text.layer.borderColor = UIColor.black.cgColor
         text.layer.borderWidth = 1
         text.layer.cornerRadius = 12
-        text.placeholder = "New status"
+        text.placeholder = "Новый статус"
         text.leftViewMode = .always
         text.addTarget(self, action: #selector(statusTextChange), for: .editingChanged)
-        
         return text
     }()
     
