@@ -22,7 +22,7 @@ class InfoViewController: UIViewController {
          button.layer.borderColor = UIColor.red.cgColor
          button.layer.borderWidth = 1
          button.layer.cornerRadius = 10
-         button.setTitle("Touch me", for: .normal)
+         button.setTitle("Нажми меня", for: .normal)
          button.setTitleColor(.systemBlue, for: .normal)
          button.addTarget(self, action: #selector(showUIAlertController), for: .touchUpInside)
          return button
@@ -42,19 +42,19 @@ class InfoViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-        title = "New view"
+        title = "Новый элемент"
     }
     
     @objc private func showUIAlertController () {
         let alertView = UIAlertController(
-            title: "ALERT",
-            message: "Are you okay?",
+            title: "Предупреждение",
+            message: "С тобой все в порядке?",
             preferredStyle: .alert)
         
-        let printYes = UIAlertAction(title: "Yes", style: .default) { (action) in
-            print("Yesssssss")
+        let printYes = UIAlertAction(title: "Да", style: .default) { (action) in
+            print("Да")
         }
-        let printNo = UIAlertAction(title: "No", style: .cancel)
+        let printNo = UIAlertAction(title: "Нет", style: .cancel)
         alertView.addAction(printYes)
         alertView.addAction(printNo)
         present(alertView, animated: true)
