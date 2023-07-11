@@ -77,8 +77,3 @@ final class FeedViewController: UIViewController {
     }
 }
 
-    struct Post {
-        var title: String
-}
-
-
