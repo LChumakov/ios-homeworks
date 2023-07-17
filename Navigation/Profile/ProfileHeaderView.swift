@@ -1,18 +1,15 @@
-//
-//  ProfileHeaderView.swift
-//  Navigation
-//
-//  Created by Alex Chumakov on 28.05.2023.
-//
 
 import UIKit
 
 class ProfileHeaderView: UIView {
     
+    // MARK: - Subviews
+    
     private var imageProfile: UIImageView = {
         var imageView = UIImageView()
         let image = UIImage(named: "Profile")
         imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 50
@@ -24,7 +21,7 @@ class ProfileHeaderView: UIView {
     private var labelName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Фрилансер"
+        label.text = "Wicher"
         label.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
         label.textColor = .black
         return label
@@ -70,14 +67,7 @@ class ProfileHeaderView: UIView {
     
     private var statusText: String = ""
     
-    @objc private func printStatus () {
-        labelStatus.text = statusText
-        print ("Статус: \(labelStatus.text ?? "")")
-    }
-    
-    @objc private func statusTextChange(_ textField: UITextField) {
-        statusText = textField.text ?? ""
-    }
+    // MARK: - Private
     
     private func setupConstraints() {
         addSubview(imageProfile)
@@ -111,6 +101,18 @@ class ProfileHeaderView: UIView {
             textField.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 16),
         ])
     }
+    
+    // MARK: - Actions
+    
+    @objc private func printStatus () {
+        labelStatus.text = statusText
+        print ("Статус: \(labelStatus.text ?? "")")
+    }
+    
+    @objc private func statusTextChange(_ textField: UITextField) {
+        statusText = textField.text ?? ""
+    }
+    
     
     override init(frame: CGRect) {
         super .init(frame: frame)

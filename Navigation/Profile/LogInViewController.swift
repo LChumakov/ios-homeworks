@@ -3,6 +3,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    // MARK: - Subviews
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,20 +88,41 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupView()
+        addSubView()
+        setupConstraint()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeKeyboardObserver()
+    }
+    
+    // MARK: - Private
+    
     private func setupView() {
         self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
-
     }
     
     private func addSubView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-
         contentView.addSubview(imageViewProfile)
         contentView.addSubview(textStackView)
         contentView.addSubview(loginButton)
-        
     }
     
     private func setupConstraint() {
@@ -133,7 +156,6 @@ class LoginViewController: UIViewController {
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.topAnchor.constraint(equalTo: textStackView.bottomAnchor, constant: 16),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
-            
         ])
         
         contentView.subviews.last?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -162,6 +184,8 @@ class LoginViewController: UIViewController {
         notificationCenter.removeObserver(self)
     }
     
+    // MARK: - Actions
+    
     @objc private func touchLoginButton() {
         let profileViewController = ProfileViewController()
         
@@ -169,7 +193,6 @@ class LoginViewController: UIViewController {
         profileViewController.modalPresentationStyle = .fullScreen
         
         navigationController?.pushViewController(profileViewController, animated: true)
-        
     }
     
     @objc func willShowKeyboard (_ notification: NSNotification) {
@@ -180,29 +203,5 @@ class LoginViewController: UIViewController {
     
     @objc func willHideKeyboard (_ notification: NSNotification) {
         scrollView.contentInset.bottom = 0.0
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupView()
-        addSubView()
-        setupConstraint()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setupKeyboardObserver()
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        removeKeyboardObserver()
-        
     }
 }

@@ -35,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarController.viewControllers = [feedNavigationController, loginNavigatinController]
         
-        
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         

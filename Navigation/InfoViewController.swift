@@ -1,20 +1,9 @@
-//
-//  InfoViewController.swift
-//  Navigation
-//
-//  Created by Alex Chumakov on 24.05.2023.
-//
 
 import UIKit
 
 class InfoViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupView()
-        setupConstraints()
-    }
+    
+    // MARK: - Subviews
     
    private lazy var infoButton: UIButton = {
          let button = UIButton()
@@ -27,6 +16,17 @@ class InfoViewController: UIViewController {
          button.addTarget(self, action: #selector(showUIAlertController), for: .touchUpInside)
          return button
      }()
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupView()
+        setupConstraints()
+    }
+    
+    // MARK: - Private
      
     private func setupConstraints() {
         view.addSubview(infoButton)
@@ -44,6 +44,8 @@ class InfoViewController: UIViewController {
         view.backgroundColor = .white
         title = "Новый элемент"
     }
+    
+    // MARK: - Actions
     
     @objc private func showUIAlertController () {
         let alertView = UIAlertController(

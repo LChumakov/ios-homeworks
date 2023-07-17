@@ -1,9 +1,3 @@
-//
-//  Post.swift
-//  Navigation
-//
-//  Created by Alex Chumakov on 10.07.2023.
-//
 
 import UIKit
 
@@ -23,29 +17,29 @@ extension PostModel {
     static func make() -> [PostModel] {
         [
         PostModel(
-            autors: "",
-            description: "",
-            image: "",
-            likes: 322,
-            views: 3457),
+            autors: "Геральд",
+            description: "Гераль из Риви, прозванный Белым Волком и Мясником из Блавикена",
+            image: "Wicher",
+            likes: 11322,
+            views: 13457),
         PostModel(
-            autors: "",
-            description: "",
-            image: "",
-            likes: 457,
+            autors: "Енифер",
+            description: "Йеннифэр из Венгерберга — могущественная чародейка",
+            image: "Enifer",
+            likes: 6457,
             views: 7653),
         PostModel(
-            autors: "",
-            description: "",
-            image: "",
+            autors: "Трисс",
+            description: "Трисс Меригольд – молодая и талантливая чародейка",
+            image: "Triss",
             likes: 4567,
-            views: 9658),
+            views: 4799),
         PostModel(
-            autors: "",
-            description: "",
-            image: "",
-            likes: 234,
-            views: 543),
+            autors: "Цири",
+            description: "Цирилла Фиона Элен Рианнон - дитя старшей крови",
+            image: "Ciri",
+            likes: 8945,
+            views: 10342),
         ]
     }
 }

@@ -1,56 +1,93 @@
-//
-//  ProfileViewController.swift
-//  Navigation
-//
-//  Created by Alex Chumakov on 20.05.2023.
-//
 
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-    var profileHeaderView = ProfileHeaderView()
     
-    private lazy var changeTitle: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Изменить заголовок", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowOpacity = 0.7
-        button.layer.shadowRadius = 4
-        button.backgroundColor = .blue
-        return button
+    // MARK: - Data
+    
+    fileprivate let data = PostModel.make()
+    
+    // MARK: - Subviews
+    
+    private let profileHeaderView = ProfileHeaderView()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView.init(
+            frame: .zero,
+            style: .plain
+        )
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
-        showHearedView()
+        addSubview()
+        tuneTableView()
+        setupConstraint()
     }
-    
-    private func showHearedView() {
-        
-        view.addSubview(profileHeaderView)
-        view.addSubview(changeTitle)
-        
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
-            changeTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            changeTitle.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            changeTitle.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            ])
-    }
+    // MARK: - Private
     
     private func setupView() {
-        view.backgroundColor = .lightGray
         title = "Профиль"
+        view.backgroundColor = .systemGray4
+    }
+    
+    private func addSubview() {
+        view.addSubview(profileHeaderView)
+        view.addSubview(tableView)
+    }
+    
+    private func tuneTableView() {
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
+        tableView.tableHeaderView = UIView()
+        tableView.tableFooterView = UIView()
+        tableView.dataSource = self
+//        tableView.delegate = self
+    }
+    
+    private func setupConstraint() {
+        let safeAreaGuiade = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            
+            profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuiade.topAnchor),
+            profileHeaderView.leadingAnchor.constraint(equalTo: safeAreaGuiade.leadingAnchor),
+            profileHeaderView.trailingAnchor.constraint(equalTo: safeAreaGuiade.trailingAnchor),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            
+            tableView.topAnchor.constraint(equalTo: profileHeaderView.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeAreaGuiade.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaGuiade.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeAreaGuiade.bottomAnchor)
+        ])
+    }
+  
+    // MARK: - Actions
+    
+}
+
+extension ProfileViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        data.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.id, for: indexPath) as? PostTableViewCell
+        else { return UITableViewCell() }
+        let post = data[indexPath.row]
+//        cell.configure(with: post)
+        return cell
+
+
     }
 }

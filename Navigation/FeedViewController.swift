@@ -9,6 +9,8 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
+    // MARK: - Subviews
+    
     private lazy var button1: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,13 +43,16 @@ final class FeedViewController: UIViewController {
         return stackView
     }()
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupConstraints()
-        
     }
+    
+    // MARK: - Private
     
     private func setupView() {
        
@@ -65,6 +70,8 @@ final class FeedViewController: UIViewController {
         ])
     }
     
+    // MARK: - Actions
+    
     @objc private func buttonPressed () {
         let postViewController = PostViewController()
         postViewController.post = Post(title: "Изменение заголовка")
@@ -73,7 +80,6 @@ final class FeedViewController: UIViewController {
         postViewController.modalPresentationStyle = .fullScreen
 
         navigationController?.pushViewController(postViewController, animated: true)
-        
     }
 }
 
