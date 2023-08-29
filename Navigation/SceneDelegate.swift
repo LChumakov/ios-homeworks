@@ -24,19 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedViewController = FeedViewController()
         let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         feedViewController.view.backgroundColor = .white
-        feedViewController.title = "Feed"
+       
+        let loginViewController = LoginViewController()
+        let loginNavigatinController = UINavigationController(rootViewController: loginViewController)
         
-        let profileViewController = ProfileViewController()
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileViewController.view.backgroundColor = .yellow
-        profileViewController.title = "Profile"
-    
         let tabBarController = UITabBarController()
         
-        feedViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "house.fill"), tag: 0)
+        loginViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
         
-        tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
+        tabBarController.viewControllers = [feedNavigationController, loginNavigatinController]
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
@@ -61,7 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
        
     }
-  
-    }
+  }
 
 

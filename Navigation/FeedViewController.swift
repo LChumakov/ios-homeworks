@@ -9,57 +9,76 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    private lazy var actionButton: UIButton = {
-        var button = UIButton()
-        
+    // MARK: - Subviews
+    
+    private lazy var button1: UIButton = {
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.borderColor = UIColor.red.cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 10
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitle("Кнопка1", for: .normal)
+        button.backgroundColor = .blue
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
+    private lazy var button2: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Кнопка2", for: .normal)
+        button.backgroundColor = .brown
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.addArrangedSubview(button1)
+        stackView.addArrangedSubview(button2)
+        return stackView
+    }()
+
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupConstraints()
         setupView()
-  
+        setupConstraints()
     }
     
-    func setupConstraints() {
-        view.addSubview(actionButton)
-        
+    // MARK: - Private
+    
+    private func setupView() {
+       
+        self.title = "Лента"
+        view.addSubview(stackView)
+    }
+    
+   private func setupConstraints() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
+       
         NSLayoutConstraint.activate([
-            actionButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 20),
-            actionButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            actionButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            actionButton.heightAnchor.constraint(equalToConstant: 50)
+            stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])
     }
     
-    func setupView() {
-        self.title = "Profile"
-    }
+    // MARK: - Actions
     
     @objc private func buttonPressed () {
         let postViewController = PostViewController()
-        postViewController.post = Post(title: "Change title")
-        
+        postViewController.post = Post(title: "Изменение заголовка")
+
         postViewController.modalTransitionStyle = .coverVertical
         postViewController.modalPresentationStyle = .fullScreen
-       
+
         navigationController?.pushViewController(postViewController, animated: true)
     }
 }
-
-    struct Post {
-        var title: String
-}
-
-
 
