@@ -74,8 +74,8 @@ class PostTableViewCell: UITableViewCell {
         autorPost.text = post.autors
         descriptionPost.text = post.description
         imagePost.image = UIImage(named: post.image)
-        likesPost.text = "Лайки: \(post.likes)"
-        viewsPost.text = "Просмотры: \(post.views)"
+        likesPost.text = "Лайки: \(String(post.likes))"
+        viewsPost.text = "Просмотры: \(String(post.views))"
     }
     
     private func setupConstraints() {

@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         return text
     }()
     
-    private lazy var textStackView: UIStackView = {
+    private lazy var textStackView: UIStackView = { [unowned self] in
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.layer.borderColor = UIColor.lightGray.cgColor
@@ -189,7 +189,7 @@ class LoginViewController: UIViewController {
     @objc private func touchLoginButton() {
         let profileViewController = ProfileViewController()
         
-        profileViewController.modalTransitionStyle = .coverVertical
+        profileViewController.modalTransitionStyle = .flipHorizontal
         profileViewController.modalPresentationStyle = .fullScreen
         
         navigationController?.pushViewController(profileViewController, animated: true)
@@ -203,5 +203,14 @@ class LoginViewController: UIViewController {
     
     @objc func willHideKeyboard (_ notification: NSNotification) {
         scrollView.contentInset.bottom = 0.0
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(
+        _ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            
+            return true
     }
 }

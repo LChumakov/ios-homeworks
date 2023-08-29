@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate {
     
     // MARK: - Data
     
@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private var dataSours = PostModel.make()
     
     // MARK: - Lifecycle
     
@@ -47,7 +49,7 @@ class ProfileViewController: UIViewController {
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.delegate = self
     }
     
     private func setupConstraint() {
@@ -72,22 +74,18 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data.count
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.id, for: indexPath) as? PostTableViewCell
-        else { return UITableViewCell() }
-        let post = data[indexPath.row]
-//        cell.configure(with: post)
+        else { return UITableViewCell()}
+        let post = dataSours[indexPath.row]
+        cell.configure(post: post)
         return cell
+    }
+    
 
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        dataSours.count
+        
     }
 }
